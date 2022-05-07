@@ -255,67 +255,6 @@ int ondriver_drivercontrol_0() {
   return 0;
 }
 
-int skills_auton() {
-  Drivetrain.setStopping(brake);
-  Drivetrain.setDriveVelocity(5, percent);
-  Drivetrain.setTurnVelocity(5, percent);
-  Drivetrain.setHeading(45, degrees);
-  Drivetrain.driveFor(forward, 3, inches);
-  wait(100, msec);
-  DigitalOutC.set(true);
-  wait(100, msec);
-  FrontLiftUp();
-  Drivetrain.driveFor(reverse, 14, inches);
-  Drivetrain.turnToHeading(344, degrees);
-  Drivetrain.stop();
-  wait(100,msec);
-  Drivetrain.setDriveVelocity(10, percent);
-  Drivetrain.driveFor(forward, 5, inches);
-  Drivetrain.turnToHeading(333.5, degrees);
-  Drivetrain.stop();
-  wait(100, msec);
-  Drivetrain.setDriveVelocity(15, percent);
-  Drivetrain.driveFor(80, inches);
-  wait(300, msec);
-  Drivetrain.driveFor(reverse, 10, inches);
-  wait(100, msec);
-  Drivetrain.turnToHeading(333, degrees);
-  wait(100, msec);
-  Drivetrain.setDriveVelocity(17, percent);
-  Drivetrain.driveFor(35, inches);
-  wait(100, msec);
-  DigitalOutC.set(false);
-  wait(100, msec);
-  Drivetrain.driveFor(reverse, 10, inches);
-  wait(100, msec);
-  Drivetrain.turnToHeading(103, degrees);
-  FrontLiftDown();
-  Drivetrain.driveFor(55, inches);
-  Drivetrain.setStopping(coast);
-  return 0;
-}
-
-int neutral_auton() {
-  Drivetrain.setStopping(brake);
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.setTurnVelocity(100, percent);
-  Drivetrain.driveFor(forward, 45.0, inches);
-  DigitalOutC.set(true);
-  Drivetrain.driveFor(reverse, 45.0, inches);
-  return 0;
-}
-
-int awp_auton() {
-  Drivetrain.setStopping(brake);
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.setTurnVelocity(100, percent);
-  return 0;
-}
-
-int big_brain() {
-  return 0;
-}
-
 void VEXcode_driver_task() {
   // Start the driver control tasks....
   vex::task drive0(ondriver_drivercontrol_0);
@@ -326,31 +265,7 @@ void VEXcode_driver_task() {
 
 void VEXcode_auton_task() {
   // Start the auton control tasks....
-  int binp = 1;
-  if (binp == 0) {
-    vex::task auto0(skills_auton);
-    while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-    auto0.stop();
-    return;
-  } if (binp == 1) {
-    vex::task auto0(neutral_auton);
-    while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-    auto0.stop();
-    return;
-  } if (binp == 2) {
-    vex::task auto0(awp_auton);
-    while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-    auto0.stop();
-    return;
-  } if (binp == 3) {
-    vex::task auto0(awp_auton);
-    while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-    auto0.stop();
-    return;
-  }
-  else {
-    return;
-  }
+  return;
 }
 
 int main() {
